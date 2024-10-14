@@ -5,7 +5,8 @@ export default {
     extend: {
       colors: {
         "bg-col": "rgba(102, 16, 83, 0.69)",
-        white: "#fff",
+        "bg-dark-col": "rgba(102, 16, 83, 0.678)",
+        "dark-col": "#333",
       },
     },
   },

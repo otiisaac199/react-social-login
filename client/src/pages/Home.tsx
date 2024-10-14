@@ -3,8 +3,7 @@ import { posts } from "../data";
 
 const Home = () => {
   return (
-    <div>
-      {" "}
+    <div className="flex justify-between py-[50px] px-[100px] flex-wrap ">
       {posts.map((post) => (
         <Card key={post.id} post={post} />
       ))}
