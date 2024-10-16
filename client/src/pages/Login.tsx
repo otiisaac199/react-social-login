@@ -3,6 +3,10 @@ import Facebook from "../img/facebook.png";
 import Github from "../img/github.png";
 
 const Login = () => {
+  const google = () => {
+    window.open("http://localhost:5000/auth/google", "_self");
+  };
+
   return (
     <div className="h-[calc(100vh-50px)] flex items-center justify-center">
       <h1 className="absolute top-[140px] text-3xl font-bold text-gray-300">
@@ -10,7 +14,7 @@ const Login = () => {
       </h1>
       <div className="w-[60%] h-[75%] shadow-lg flex items-center rounded-lg">
         <div className="left">
-          <div className="loginButton bg-[#df4930]">
+          <div className="loginButton bg-[#df4930]" onClick={google}>
             <img src={Google} alt="" className="icon" />
             Google
           </div>

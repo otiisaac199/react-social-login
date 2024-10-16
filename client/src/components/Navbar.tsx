@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom";
-import { LogoImg } from "../../utils";
+// import { LogoImg } from "../../utils";
 
 type NavbarProps = {
-  user: boolean;
+  user: {
+    displayName: string;
+    photos: { value: string }[];
+  } | null;
 };
 
 const Navbar = ({ user }: NavbarProps) => {
+  const logout = () => {
+    window.open("http://localhost:5000/auth/logout", "_self");
+  };
   return (
     <div className="flex justify-around items-center bg-bg-col text-white h-[50px]">
       <span className="text-[20px] font-[500]">
@@ -16,12 +22,14 @@ const Navbar = ({ user }: NavbarProps) => {
           <li className="mr-1">
             <img
               className="w-8 h-8 rounded-full object-cover"
-              src={LogoImg}
+              src={user.photos[0].value}
               alt=""
             />
           </li>
-          <li>John Doe</li>
-          <li className="ml-6">Logout</li>
+          <li>{user.displayName}</li>
+          <li className="ml-6 cursor-pointer" onClick={logout}>
+            Logout
+          </li>
         </ul>
       ) : (
         <Link to="login" className="font-bold">

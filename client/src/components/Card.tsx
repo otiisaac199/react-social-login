@@ -11,7 +11,7 @@ type CardProps = {
 
 const Card = ({ post }: CardProps) => {
   return (
-    <div className="w-[30%] p-8 shadow-lg rounded-md">
+    <div className="w-[100%] p-8 shadow-lg rounded-md">
       <Link to={`/post/${post.id}`}>
         <span>{post.title}</span>
         <img
