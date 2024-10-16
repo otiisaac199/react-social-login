@@ -6,6 +6,8 @@ const passport = require("passport");
 const authRoute = require("./routes/auth");
 const cors = require("cors");
 
+require("dotenv").config();
+
 app.use(
   cookieSession({
     name: "session",

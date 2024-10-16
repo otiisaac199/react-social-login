@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const passport = require("passport");
+require("dotenv").config();
 
-const CLIENT_URL = "http://localhost:5173";
+// require("https").globalAgent.options.rejectUnauthorized = false;
 
 router.get("/login/success", (req, res) => {
   if (req.user)
@@ -15,7 +16,7 @@ router.get("/login/success", (req, res) => {
 
 router.get("/logout", (req, res) => {
   req.logOut();
-  res.redirect(CLIENT_URL);
+  res.redirect(process.env.CLIENT_URL);
 });
 
 router.get("/login/failed", (req, res) => {
@@ -25,12 +26,24 @@ router.get("/login/failed", (req, res) => {
   });
 });
 
+// GOOGLE AUTH
 router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
 
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    successRedirect: CLIENT_URL,
+    successRedirect: process.env.CLIENT_URL,
+    failureRedirect: "/login/failed",
+  })
+);
+
+// GITHUB AUTH
+router.get("/github", passport.authenticate("github", { scope: ["profile"] }));
+
+router.get(
+  "/github/callback",
+  passport.authenticate("github", {
+    successRedirect: process.env.CLIENT_URL,
     failureRedirect: "/login/failed",
   })
 );
